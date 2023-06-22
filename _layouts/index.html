@@ -2,17 +2,12 @@
   <body>
     {{ content }}
     <script>
-      let request = new XMLHttpRequest();
-      request.open("GET", "https://publicapi.battlebit.cloud/Servers/GetServerList");
-      request.send();
-      request.onload = () => {
-        console.log(request);
-        if (request.status === 200) {
-          print(JSON.parse(request.response));
-        } else {
-          print(`error ${request.status} ${request.statusText}`);
-        }
+      async function getServers() {
+        let response = await fetch('https://publicapi.battlebit.cloud/Servers/GetServerList');
+        let data = await response.json()
+        return data;
       }
+      getServers().then(data => document.write(data));
     </script>
   </body>
 </html>
