@@ -1,0 +1,17 @@
+<html>
+  <body>
+    <script>
+      let request = new XMLHttpRequest();
+      request.open("GET", "https://publicapi.battlebit.cloud/Servers/GetServerList");
+      request.send();
+      request.onload = () => {
+        console.log(request);
+        if (request.status === 200) {
+          print(JSON.parse(request.response));
+        } else {
+          print(`error ${request.status} ${request.statusText}`);
+        }
+      }
+    </script>
+  </body>
+</html>
